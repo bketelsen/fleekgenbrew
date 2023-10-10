@@ -1,0 +1,13 @@
+name: Default
+description: Just Enough bling
+packages:
+  - git
+  - htop
+  - gh
+  - glab
+  - fzf
+  - ripgrep
+  - rsync
+programs:
+  - direnv
+  - starship

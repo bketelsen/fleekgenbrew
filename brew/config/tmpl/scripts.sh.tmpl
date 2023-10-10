@@ -1,0 +1,7 @@
+{{  range $key, $value := . }}
+function {{ $key }} {
+{{ range $value }}
+    {{ . }}
+{{- end }}
+}
+{{- end }}

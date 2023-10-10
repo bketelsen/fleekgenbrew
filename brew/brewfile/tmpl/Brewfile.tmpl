@@ -1,0 +1,6 @@
+{{ range .Packages }}
+brew "{{ . }}"
+{{- end }}
+{{ range .Programs }}
+brew "{{ . }}"
+{{- end }}

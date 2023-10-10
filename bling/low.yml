@@ -1,0 +1,10 @@
+name: Low
+description: Low levels of sparkle added to your terminal
+packages:
+  - git
+  - htop
+  - gh
+  - glab
+  - rsync
+programs:
+  - starship

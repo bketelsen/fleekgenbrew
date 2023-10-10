@@ -1,0 +1,113 @@
+  - name: bat
+    description: | 
+      A cat(1) clone with wings. 
+
+      https://github.com/sharkdp/bat
+    aliases:
+    - key: catp
+      value: "bat -P"
+      description: bat --plain for unformatted cat
+    - key: cat
+      value: "bat"
+      description: replace cat with bat
+    config_lines:
+    - key: "programs.bat.config"
+      value: |-
+        --theme="TwoDark";
+    config_files:
+    - file_name: ".config/bat/config"
+      value: |-
+        --theme="TwoDark"
+  - name: starship
+    config_files:
+    - file_name: ".config/starship.toml"
+      value: |-
+        [container]
+        disabled = true
+
+        [nix_shell]
+        disabled = true
+
+        [hostname]
+        ssh_only = false
+        format = '[$hostname](bold dimmed green) '
+        disabled = false
+
+        [username]
+        format = '[$user@]($style)'
+        disabled = false
+        show_always = true
+    init:
+      zsh: |
+        eval "$(starship init zsh)"
+      bash: |
+        eval "$(starship init bash)"
+    description: | 
+      The minimal, blazing-fast, and infinitely customizable prompt for any shell!
+
+      https://starship.rs/
+  - name: zoxide
+    aliases:
+    - key: cd
+      value: "z"
+      description: zoxide for smart cd
+    init:
+      zsh: |
+        eval "$(zoxide init zsh)"
+      bash: |
+        eval "$(zoxide init bash)"
+    description: | 
+      zoxide is a smarter cd command, inspired by z and autojump.
+
+      https://github.com/ajeetdsouza/zoxide
+  - name: direnv
+    init:
+      zsh: |
+        eval "$(direnv hook zsh)"
+      bash: |
+        eval "$(direnv hook bash)"
+    description: | 
+      unclutter your .profile
+      direnv is an extension for your shell. It augments existing shells with a new feature that can load and unload environment variables depending on the current directory.
+
+      https://direnv.net/
+  - name: atuin
+    description:  | 
+      Magical Shell History
+      Atuin replaces your existing shell history with a SQLite database, and records additional context for your commands. Additionally, it provides optional and fully encrypted synchronisation of your history between machines, via an Atuin server.
+      Tip: toggle between directory, global and host history with CTRL-R
+      https://atuin.sh
+    init:
+      zsh: |
+        if [[ $options[zle] = on ]]; then
+          eval "$(atuin init zsh )"
+        fi
+      bash: |
+        [ -f $HOMEBREW_PREFIX/etc/profile.d/bash-preexec.sh ] && . $HOMEBREW_PREFIX/etc/profile.d/bash-preexec.sh        
+        eval "$(atuin init bash)"
+  - name: eza
+    aliases:
+    - key: ls
+      value: "eza"
+      description: eza for ls
+    - key: lsa
+      value: "eza -a"
+      description: eza for ls -a
+    - key: ll
+      value: "eza -l --header"
+      description: eza for ls
+    - key: lla
+      value: "eza -la --header"
+      description: eza for ls -la
+    description: | 
+      A modern replacement for ‘ls’.
+      https://the.exa.website/
+    config_lines:
+      - key: programs.eza.enableAliases
+        value:  true
+      - key: programs.eza.extraOptions
+        value:  |-
+         [
+            "--group-directories-first"
+            "--header"
+         ]
