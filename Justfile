@@ -15,3 +15,6 @@ build:
 
 run: build
   ./fleekgenbrew
+
+deploy: build
+  flyctl deploy
