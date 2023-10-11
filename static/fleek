@@ -158,7 +158,13 @@ bundle() {
 	$cmd && return 0 || rc=$?
 	return $rc
 }
+brewcleanup() {
+    local cmd=""
 
+	cmd="brew cleanup"
+	$cmd && return 0 || rc=$?
+	return $rc
+}
 
 updaterc() {
     echo "source $HOME/.fleek/init.sh" >> $HOME/.zshrc
@@ -179,6 +185,9 @@ main() {
     end_task "Checking for Homebrew"
 
     delay
+	start_task "Cleaning brew installation"
+	brewcleanup
+    end_task "Cleaning brew installation"    
 
 	start_task "Downloading Fleek Config"    
     brewfiles $1
