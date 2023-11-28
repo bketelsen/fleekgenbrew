@@ -1,6 +1,8 @@
 shell=`ps -p $$ | awk 'NR>1  {print $4}' | sed 's/-//g'`
 SCRIPT_PATH="$HOME/.fleek"
-
+if ! [ -x "$(command -v brew)" ]; then
+  return
+fi
 case $(basename $shell) in
      "zsh" )
             . $SCRIPT_PATH/zsh/.zshrc
